@@ -84,6 +84,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'corsheaders',
+
+    'profiles',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
