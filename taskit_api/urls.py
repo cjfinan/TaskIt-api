@@ -19,4 +19,7 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('dj-rest-auth/', include('dj-rest-auth.urls')),
+    path(
+        'dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')
+    ),
 ]
