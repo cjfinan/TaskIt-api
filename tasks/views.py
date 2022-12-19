@@ -5,11 +5,17 @@ from taskit_api.permissions import IsOwnerOrReadOnly
 from .serializers import TaskSerializer
 
 
-class TaskList(generics.ListAPIView):
-    queryset = Task.objects.all()
+class TaskList(generics.ListCreateAPIView):
+    queryset = Task.objects.all().order_by('end_date')
     serializer_class = TaskSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
-class TaskDetail(generics.RetrieveUpdateAPIView):
+class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+    queryset = Task.objects.all()
