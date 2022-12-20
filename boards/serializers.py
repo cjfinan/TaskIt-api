@@ -6,7 +6,6 @@ from tasks.serializers import TaskSerializer
 class BoardSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    tasks = TaskSerializer(many=True)
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -16,5 +15,5 @@ class BoardSerializer(serializers.ModelSerializer):
         model = Board
         fields = [
             'id', 'owner', 'created_at', 'title',
-            'description', 'is_owner', 'tasks',
+            'description', 'is_owner',
         ]

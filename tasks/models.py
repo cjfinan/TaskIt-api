@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from boards.models import Board
 
 
 class Task(models.Model):
@@ -26,6 +27,7 @@ class Task(models.Model):
     end_date = models.DateTimeField(auto_now_add=False)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='to_do')
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=NORMAL)
-    
+    board = models.ForeignKey(Board, null=True, on_delete=models.CASCADE)
+
     class Meta:
         ordering = ['-created_at']
