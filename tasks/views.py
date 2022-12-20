@@ -18,4 +18,3 @@ class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Task.objects.all()

@@ -27,4 +27,5 @@ urlpatterns = [
     ),
     path('', include('profiles.urls')),
     path('', include('tasks.urls')),
+    path('', include('boards.urls')),
 ]

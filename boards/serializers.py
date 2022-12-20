@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Board
+from tasks.serializers import TaskSerializer
 
 
 class BoardSerializer(serializers.ModelSerializer):
@@ -12,8 +13,8 @@ class BoardSerializer(serializers.ModelSerializer):
         return request.user == obj.owner
 
     class Meta:
-        model = Task
+        model = Board
         fields = [
-            'id', 'owner', 'created_at', 'updated_at', 'title',
-            'description', 'end_date', 'is_owner',
+            'id', 'owner', 'created_at', 'title',
+            'description', 'is_owner', 'tasks',
         ]
