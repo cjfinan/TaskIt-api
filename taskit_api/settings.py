@@ -86,7 +86,8 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'profiles',
-    'tasks'
+    'tasks',
+    'boards',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
