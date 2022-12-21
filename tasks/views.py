@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import render
 from rest_framework import generics
 from .models import Task
@@ -9,6 +10,12 @@ class TaskList(generics.ListCreateAPIView):
     queryset = Task.objects.all().order_by('end_date')
     serializer_class = TaskSerializer
     permission_classes = [IsOwnerOrReadOnly]
+    filter_backends = [
+        DjangoFilterBackend
+    ]
+    filterset_fields = [
+        'owner__profile'
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

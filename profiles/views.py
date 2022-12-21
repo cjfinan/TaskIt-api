@@ -9,7 +9,7 @@ from taskit_api.permissions import IsOwnerOrReadOnly
 class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.annotate(
         tasks_count=Count('owner__task', distinct=True),
-        boards_count=Count('owner__board', distinct=True),
+        boards_count=Count('owner__board', distinct=True)
     ).order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter
@@ -17,6 +17,7 @@ class ProfileList(generics.ListAPIView):
     ordering_fields = [
         'tasks_count',
         'boards_count',
+        'todo_count',
     ]
     serializer_class = ProfileSerializer
 
