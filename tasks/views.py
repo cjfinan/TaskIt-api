@@ -14,7 +14,8 @@ class TaskList(generics.ListCreateAPIView):
         DjangoFilterBackend
     ]
     filterset_fields = [
-        'owner__profile'
+        'owner__profile',
+        'status',
     ]
 
     def perform_create(self, serializer):
