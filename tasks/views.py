@@ -4,6 +4,9 @@ from rest_framework import generics
 from .models import Task
 from taskit_api.permissions import IsOwnerOrReadOnly
 from .serializers import TaskSerializer
+from django.db.models import Count, Q
+from django.http import JsonResponse
+from rest_framework.views import APIView
 
 
 class TaskList(generics.ListCreateAPIView):
@@ -16,6 +19,7 @@ class TaskList(generics.ListCreateAPIView):
     filterset_fields = [
         'owner__profile',
         'status',
+        'board',
     ]
 
     def perform_create(self, serializer):
